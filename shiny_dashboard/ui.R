@@ -127,7 +127,9 @@ body <- dashboardBody(
           # Change slider color and style ----
           shinyWidgets::chooseSliderSkin(skin = 'Flat',color = '#A0185A'), #END slider color,
           
-          actionButton("submit", "Update Plot")
+          actionButton("submit", "Update Plot"),
+          
+          actionButton("reset", "Reset Map")
           
       ), # END input box
       
