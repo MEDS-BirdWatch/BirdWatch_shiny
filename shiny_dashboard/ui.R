@@ -23,7 +23,7 @@
 
 #### dashboardHeader ####
 header <- dashboardHeader(
-  title = tagList(icon("fish"), strong("BirdWatch")),
+  title = tagList(icon("crow"), strong("BirdWatch")),
   titleWidth = 230
 ) # END dashboardHeader
 
