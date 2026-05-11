@@ -36,3 +36,14 @@ gap_clean <- gap_poly%>%
   st_transform(crs = 4326)
 
 st_write_parquet(gap_clean,'shiny_dashboard/data/gap_clean.parquet')
+
+gdf_wgs84 <- st_transform(gdf, crs = 4326)
+
+# Plot
+leaflet(gdf_wgs84) |>
+  addProviderTiles(providers$Esri.WorldImagery) |>
+  addCircleMarkers(
+    radius = 6,
+    color = "red",
+    fillOpacity = 0.8
+  )

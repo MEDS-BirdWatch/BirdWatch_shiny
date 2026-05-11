@@ -30,9 +30,9 @@ lifeform_colors <- c(
   HERBACEOUS = "#FEDD63",
   SHRUB = "#F7A54B",
   URBAN = "#595959",
-  WATER = "#A2CDE6",
+  WATER = "#8EBEE2",
   AGRICULTURE = "#B5727A",
-  "BARREN/OTHER" = "#FFCDDC"  
+  "BARREN/OTHER" = "#FF72DE"  
 )
 
 gap_colors <- c(
