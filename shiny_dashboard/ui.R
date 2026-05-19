@@ -929,7 +929,7 @@ dashboard_tab <- tabItem(
   
   # input box
   box(width = 4,
-      title = tags$strong("Adjust Lake Parameter Ranges:"),
+      title = tags$strong("Adjust Avian View:"),
       
       # species pickerInput
       pickerInput(
@@ -984,10 +984,11 @@ dashboard_tab <- tabItem(
   ), # END input box
   
   # leaflet box
-  box(width = 8,
-      # Teal mid (#1A8A6A) — loading spinner colour
-      leafletOutput(outputId = "leaflet_output") %>%
-        withSpinner(type = 8, color = "#1A8A6A")
+  box(
+    width = 8,
+    height = 700,
+    leafletOutput(outputId = "leaflet_output", height = "663px") %>%
+      withSpinner(type = 8, color = "#1A8A6A")
   ) # END leaflet box
   
 ) # END dashboard tabItem

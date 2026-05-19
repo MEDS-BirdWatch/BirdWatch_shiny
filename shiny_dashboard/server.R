@@ -32,6 +32,7 @@
         
         addPolygons(data = gap_clean, 
                     group = 'GAP Status',
+                    smoothFactor = 2,
                     fillColor = ~gap_pal(gap_sts),
                     color = "black", 
                     weight = 1,
@@ -39,6 +40,7 @@
         
         addPolygons(data = habitat_poly,
                     group = 'Habitat Type',
+                    smoothFactor = 2,
                     fillColor = ~habitat_pal(LIFEFORM),
                     color = "black",
                     weight = 0.5,

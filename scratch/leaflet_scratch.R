@@ -1,3 +1,7 @@
+library(sf)
+library(rmapshaper)
+
+
 birds_joined <- st_read_parquet('data_raw/birds_joined.parquet')
 
 coords <- birds_joined %>% 
@@ -25,17 +29,19 @@ write_parquet(leaflet_bird_points,'shiny_dashboard/data/leaflet_bird_points.parq
 
 habitat_poly <- st_read_parquet('data_raw/habitat_polygon.parquet')
 
-habitat_clean <- habitat_poly %>%
+# Simplify — keep=0.02 is aggressive; tune up if shapes look wrong
+habitat_s <- ms_simplify(habitat_poly, keep = 0.02, keep_shapes = TRUE) %>% 
   st_transform(crs = 4326)
 
-st_write_parquet(habitat_clean,'shiny_dashboard/data/habitat_clean.parquet')
+
+st_write_parquet(habitat_s,'shiny_dashboard/data/habitat_clean.parquet')
 
 gap_poly <- st_read_parquet('data_raw/gap_polygon.parquet')
 
-gap_clean <- gap_poly%>%
+gap_s <- ms_simplify(gap_poly, keep = 0.02, keep_shapes = TRUE) %>% 
   st_transform(crs = 4326)
 
-st_write_parquet(gap_clean,'shiny_dashboard/data/gap_clean.parquet')
+st_write_parquet(gap_s,'shiny_dashboard/data/gap_clean.parquet')
 
 gdf_wgs84 <- st_transform(gdf, crs = 4326)
 
