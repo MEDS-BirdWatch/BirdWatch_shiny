@@ -18,6 +18,9 @@
       if (length(input$gap_ID) > 0)
         df <- df %>% filter(gap_sts %in% input$gap_ID)
       
+      if (length(input$survey_ID) > 0)
+        df <- df %>% filter(survey_type == input$survey_ID)
+      
       df %>% filter(area_observations >= input$observation_ID[1] &
                       area_observations <= input$observation_ID[2])
       
@@ -138,6 +141,8 @@
       updateSliderInput(session, "observation_ID",
                         value = c(min(leaflet_points$area_observations, na.rm = TRUE),
                                   max(leaflet_points$area_observations, na.rm = TRUE)))
+      # reset checkbox
+      updateCheckboxGroupInput(session, "survey_ID", selected = character(0))
       
       leafletProxy("leaflet_output", data = leaflet_points) %>%
         clearGroup("Observations") %>%

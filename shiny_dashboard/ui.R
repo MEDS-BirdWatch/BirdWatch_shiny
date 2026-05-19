@@ -959,6 +959,13 @@ dashboard_tab <- tabItem(
                     max(leaflet_points$area_observations, na.rm = TRUE))
       ), # END observation sliderInput
       
+      # Study type check box input
+      checkboxGroupInput(
+        inputId = "survey_ID",
+        label = 'Survey Method',
+        choices = unique(leaflet_points$survey_type)
+      ), # END Survey type check box input
+      
       # habitat type pickerInput
       pickerInput(
         inputId  = "habitat_ID",
@@ -972,7 +979,7 @@ dashboard_tab <- tabItem(
         inputId  = "gap_ID",
         label    = "GAP Status",
         multiple = TRUE,
-        choices  = unique(leaflet_points$gap_sts)
+        choices  = sort(unique(leaflet_points$gap_sts))
       ), # END gap status pickerInput
       
       # Navy mid (#2C4A6E) — slider skin accent colour
