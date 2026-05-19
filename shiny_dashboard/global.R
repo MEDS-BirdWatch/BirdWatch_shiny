@@ -17,11 +17,13 @@ library(shinyWidgets)
 # read in data 
 species_list <- read_parquet('data/species.parquet')
 
-leaflet_points <- read_parquet('data/leaflet_bird_points.parquet') # no here in shiny
+leaflet_points <- read_parquet('data/leaflet_bird_points.parquet') %>%  # no here in shiny
+  filter(!is.na(gap_sts)) 
 
 habitat_poly <- st_read_parquet('data/habitat_clean.parquet')
 
-gap_clean <- st_read_parquet('data/gap_clean.parquet')
+gap_clean <- st_read_parquet('data/gap_clean.parquet') 
+
 
 # colors
 lifeform_colors <- c(
@@ -59,3 +61,5 @@ habitat_pal <- colorFactor(
   levels  = names(lifeform_colors),
   na.color = "transparent"
 )
+
+
