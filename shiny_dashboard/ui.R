@@ -41,193 +41,154 @@ sidebar <- dashboardSidebar(
 ) # END dashboardSidebar
 
 
-#### scrollyteller styles ####
-scrolly_css <- tags$head(
+#### welcome tab styles ####
+welcome_css <- tags$head(
   tags$style(HTML("
-
-    /* ---- scrolly section layout ---- */
-    .scrolly-wrap * { box-sizing: border-box; margin: 0; padding: 0; }
-
-    .s-section {
+    .scrolly-container {
+      position: relative;
+      width: 100%;
+    }
+    .scrolly-section {
       min-height: 100vh;
       display: flex;
       align-items: center;
-      padding: 5rem 2rem;
+      justify-content: center;
       position: relative;
     }
-    .s-section:nth-child(even) { background: #F5F5F2; }    /* Sand light — alternating section bg */
+    .static-section {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: grey;
+    }
+    .background-section {
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+    }
+    .text-box {
+      background: rgba(255, 255, 255, 0.95);
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      max-width: 700px;
+      margin: 20px;
+    }
+    .text-box h2 {
+      color: #333;
+      margin-bottom: 15px;
+    }
+    .text-box p {
+      color: #666;
+      line-height: 1.6;
+    }
+    .align-left  { justify-content: flex-start;  padding-left: 50px; }
+    .align-right { justify-content: flex-end;    padding-right: 50px; }
+    .align-center { justify-content: center; }
 
-    .s-container { max-width: 1060px; margin: 0 auto; width: 100%; }
-
-    /* ---- entrance animations ---- */
-    .anim        { opacity: 0; transition: opacity 0.75s ease, transform 0.75s ease; }
-    .from-left   { transform: translateX(-80px); }
-    .from-right  { transform: translateX(80px); }
-    .from-bottom { transform: translateY(60px); }
-    .zoom-in     { transform: scale(0.75); }
-    .visible     { opacity: 1 !important; transform: none !important; }
-
-    /* ---- grid splits ---- */
-    .split   { display: grid; gap: 3rem; align-items: center; }
-    .s-50-50 { grid-template-columns: 1fr 1fr; }
-    .s-40-60 { grid-template-columns: 40fr 60fr; }
-    .s-60-40 { grid-template-columns: 60fr 40fr; }
-    .s-30-70 { grid-template-columns: 30fr 70fr; }
-
-    @media (max-width: 768px) {
-      .split { grid-template-columns: 1fr !important; }
-    }
-
-    /* ---- typography ---- */
-    .scrolly-wrap h1 {
-      font-size: 2.8rem; font-weight: 500;
-      line-height: 1.2; margin-bottom: 1rem;
-      color: #1E3A5F;                             /* Navy dark — hero heading */
-    }
-    .scrolly-wrap h2 {
-      font-size: 1.8rem; font-weight: 500;
-      margin-bottom: 0.75rem;
-      color: #1E3A5F;                             /* Navy dark — section headings */
-    }
-    .scrolly-wrap p {
-      font-size: 1rem; line-height: 1.7;
-      color: #4A5568;                             /* Dark slate — body text */
-      margin-bottom: 0.75rem;
-    }
-    .s-label {
-      font-size: 0.7rem; font-weight: 600;
-      letter-spacing: 0.12em; text-transform: uppercase;
-      color: #6B7F96;                             /* Slate — overline labels */
-      margin-bottom: 0.5rem;
-    }
-    .s-divider {
-      width: 40px; height: 3px;
-      background: #1A8A6A;                        /* Teal mid — hero divider bar */
-      border-radius: 2px; margin: 1rem 0;
-    }
-    .s-badge {
-      display: inline-block; font-size: 0.7rem; font-weight: 600;
-      padding: 3px 10px; border-radius: 6px; margin-bottom: 0.5rem;
-      background: #E6F1FB;                        /* Blue wash — badge background */
-      color: #185FA5;                             /* Blue — badge text */
-    }
-
-    /* ---- map placeholder ---- */
-    .map-ph {
-      background: linear-gradient(135deg,
-        #1A8A6A 0%,                               /* Teal mid — gradient start */
-        #0D6E56 50%,                              /* Teal dark — gradient mid */
-        #085041 100%);                            /* Teal darkest — gradient end */
-      border-radius: 12px;
-      display: flex; align-items: center; justify-content: center;
-      color: white; position: relative; overflow: hidden;
-    }
-    .map-ph::before {
-      content: ''; position: absolute; inset: 0;
-      background: repeating-linear-gradient(
-        45deg, transparent, transparent 20px,
-        rgba(255,255,255,0.03) 20px, rgba(255,255,255,0.03) 40px
-      );
-    }
-    .map-dot {
-      width: 12px; height: 12px; border-radius: 50%;
-      background: #E8C96B;                        /* Warm amber — map pulse dots */
-      border: 2px solid white;
-      position: absolute; animation: mpulse 2s infinite;
-    }
-    @keyframes mpulse {
-      0%,100% { box-shadow: 0 0 0 0 rgba(232,201,107,0.6); }  /* Amber pulse glow */
-      50%      { box-shadow: 0 0 0 8px rgba(232,201,107,0); }
-    }
-
-    /* ---- stat cards ---- */
-    .stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 1.5rem; }
-    .stat-card {
-      background: #EEF1F5;                        /* Blue-grey wash — stat card background */
-      border-radius: 8px; padding: 1rem;
-    }
-    .stat-num  { font-size: 1.8rem; font-weight: 500; line-height: 1; margin-bottom: 4px; }
-    .stat-lbl  { font-size: 0.8rem; color: #6B7F96; }  /* Slate — stat label */
-
-    /* ---- species list ---- */
-    .sp-list    { list-style: none; margin-top: 1rem; }
-    .sp-list li {
-      display: flex; align-items: center; gap: 10px;
-      padding: 0.6rem 0;
-      border-bottom: 0.5px solid rgba(0,0,0,0.07);  /* Border faint */
-      font-size: 0.95rem; color: #2D3748;             /* Dark slate — species name */
-    }
-    .sp-list li:last-child { border-bottom: none; }
-    .s-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
-
-    /* ---- filter demo card ---- */
-    .s-card {
-      background: #FFFFFF;                        /* White — filter card background */
-      border: 0.5px solid rgba(0,0,0,0.10);       /* Border light */
-      border-radius: 12px; padding: 1.5rem;
-      display: flex; flex-direction: column; gap: 14px;
-    }
-    .f-lbl { font-size: 0.75rem; color: #6B7F96; margin-bottom: 4px; }  /* Slate — filter label */
-    .f-sel {
-      background: #FFFFFF;                        /* White — select mock background */
-      border: 0.5px solid rgba(0,0,0,0.18);
-      border-radius: 8px; padding: 0.5rem 0.75rem;
-      font-size: 0.85rem; color: #1E3A5F;         /* Navy dark — select mock text */
-      display: flex; justify-content: space-between; align-items: center;
-    }
-    .f-slider { height: 4px; background: #D8DFE8; border-radius: 2px; position: relative; margin: 8px 4px 4px; }
-    .f-fill   {
-      height: 100%;
-      background: #2C4A6E;                        /* Navy mid — slider fill track */
-      border-radius: 2px; width: 60%;
-    }
-    .f-thumb  {
-      width: 16px; height: 16px; border-radius: 50%;
-      background: white;
-      border: 2px solid #2C4A6E;                 /* Navy mid — slider thumb border */
-      position: absolute; top: -6px; left: 60%; transform: translateX(-50%);
-    }
-
-    /* ---- citation cards ---- */
-    .cite-card {
-      background: #FFFFFF;                        /* White — citation card background */
-      border-left: 3px solid #1A8A6A;            /* Teal mid — citation left accent */
-      border-top: 0.5px solid rgba(0,0,0,0.08);
-      border-right: 0.5px solid rgba(0,0,0,0.08);
-      border-bottom: 0.5px solid rgba(0,0,0,0.08);
-      border-radius: 0 8px 8px 0;
-      padding: 1rem 1.25rem; margin-bottom: 12px;
-    }
-    .cite-card.warn {
-      border-left-color: #C85A2A;                /* Coral — disclaimer left accent */
-    }
-
-    /* ---- nav dots ---- */
-    #scrolly-nav {
-      position: fixed; right: 1.5rem; top: 50%;
-      transform: translateY(-50%);
-      display: flex; flex-direction: column; gap: 10px;
-      z-index: 9999;
-    }
-    .snav-dot {
-      width: 9px; height: 9px; border-radius: 50%;
-      background: rgba(0,0,0,0.18);              /* Faint dark — inactive nav dot */
-      cursor: pointer;
-      transition: background 0.3s, transform 0.3s;
-    }
-    .snav-dot.active {
-      background: #1A8A6A;                        /* Teal mid — active nav dot */
-      transform: scale(1.4);
-    }
-
-    /* ---- remove default tab padding ---- */
+    /* remove default tab padding */
     .tab-content > .tab-pane { padding: 0 !important; }
     .content-wrapper { padding: 0 !important; }
+  "))
+) # END welcome tab styles
 
-    /* ============================================================
-       CHOICES TAB STYLES
-       ============================================================ */
 
+#### welcome tabItem ####
+welcome_tab <- tabItem(
+  tabName = "welcome",
+  
+  div(
+    class = "scrolly-container",
+    
+    # Section 1: Heading
+    div(
+      class = "scrolly-section static-section",
+      style = "background-image: url('Laird-Henkel.jpg'); 
+           background-size: cover; 
+           background-position: center;",
+      div(
+        class = "text-box",
+        tags$h1("Mind the GAP: Avian responses to conservation investment in California"),
+        tags$p("Scroll down to explore our interactive story"),
+        tags$i(class = "bi bi-arrow-down", style = "font-size: 2rem;")
+      )
+    ),
+    
+    # Section 2: Background
+    div(
+      class = "scrolly-section background-section align-left",
+      style = "background-image: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0)), url('Slide2.png');
+               background-size: 100% auto;",
+      div(
+        class = "text-box",
+        tags$h2("The Issue"),
+        tags$p("Across the world biodiversity is declining, this is particularly harmful for birds.")
+      )
+    ),
+    
+    # Section 3: 30x30
+    div(
+      class = "scrolly-section background-section align-right",
+      style = "background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('dusk_stephanie_coates.jpg');",
+      div(
+        class = "text-box",
+        tags$h2("The Solution"),
+        tags$img(
+          src = "30x30.png",       # must be in www/ folder
+          style = "width: 100%;
+             height: auto;
+             border-radius: 8px;" # optional styling
+        )
+      )
+    ),
+    # Section 3.2: 30x30
+    div(
+      class = "scrolly-section background-section align-left",
+      style = "background-image: linear-gradient(rgba(0,0,0,0.3), 
+              rgba(0,0,0,0.3)), 
+              url('dusk_stephanie_coates.jpg');
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 20px;",
+      
+      div(
+        class = "text-box",
+        tags$h2("Conserve", tags$strong("30%"),
+                "of California’s land and coastal water by", 
+                tags$strong("2030"))),
+      div(
+        class = "text-box",
+        tags$h2(tags$strong("Promote biodiversity"), ", enhance land access and climate resilience")
+      )
+    ),
+    
+    # Section 4: Background with Center-aligned text
+    div(
+      class = "scrolly-section background-section align-center",
+      style = "background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('dusk_stephanie_coates.jpg');
+      display: flex;
+      flex-direction: column;
+      gap: 20px;",
+      div(
+        class = "text-box",
+        tags$h2(tags$strong("We're halfway to 2030")),
+        tags$p("How are we doing?")),
+      div(
+        class = "text-box",
+        tags$h2("Success is measured in acreage:", tags$strong("26.1% of 30%"),
+        "of target acreage currently acquired"),
+        tags$p("But can we expect to see biodiversity increase in protected areas?")
+      )
+    ),
+    
+    
+  )
+  
+) # END welcome tabItem
+
+
+#### choices tabItem styles ####
+choices_css <- tags$head(
+  tags$style(HTML("
     .choices-outer {
       padding: 2.5rem 2rem;
       max-width: 920px;
@@ -237,32 +198,30 @@ scrolly_css <- tags$head(
     .choices-header { margin-bottom: 2.5rem; }
     .choices-header h2 {
       font-size: 1.5rem; font-weight: 500;
-      color: #1E3A5F;                             /* Navy dark — choices page heading */
+      color: #1E3A5F;
       margin-bottom: 0.3rem;
     }
     .choices-header p {
       font-size: 0.85rem;
-      color: #6B7F96;                             /* Slate — choices page subtitle */
+      color: #6B7F96;
       margin: 0;
     }
 
-    /* ---- vertical connector line down left side of open branch ---- */
     .vtree { display: flex; flex-direction: column; gap: 0; }
     .vtree-branch { display: flex; flex-direction: column; position: relative; }
     .vtree-branch::before {
       content: ''; position: absolute;
       left: 20px; top: 52px; bottom: 0; width: 1px;
-      background: #D0DCE8;                        /* Blue-grey — vertical connector line */
+      background: #D0DCE8;
       z-index: 0;
     }
     .vtree-branch:last-child::before { display: none; }
 
-    /* ---- branch root node ---- */
     .vtree-root-node {
       display: flex; align-items: center; gap: 12px;
       padding: 0.75rem 1rem;
-      background: #FFFFFF;                        /* White — branch header background */
-      border: 1px solid #D0DCE8;                 /* Blue-grey — branch header border */
+      background: #FFFFFF;
+      border: 1px solid #D0DCE8;
       border-radius: 10px;
       cursor: pointer; user-select: none;
       transition: border-color 0.2s, background 0.2s;
@@ -270,40 +229,39 @@ scrolly_css <- tags$head(
       margin-bottom: 4px;
     }
     .vtree-root-node:hover {
-      border-color: #1A8A6A;                      /* Teal mid — branch hover border */
-      background: #EBF5F0;                        /* Teal wash — branch hover background */
+      border-color: #1A8A6A;
+      background: #EBF5F0;
     }
     .vtree-root-node.open {
-      border-color: #0D6E56;                      /* Teal dark — open branch border */
-      background: #EBF5F0;                        /* Teal wash — open branch background */
+      border-color: #0D6E56;
+      background: #EBF5F0;
       border-bottom-left-radius: 4px;
       border-bottom-right-radius: 4px;
     }
     .vtree-icon {
       width: 34px; height: 34px; border-radius: 8px;
-      background: #DCF0E8;                        /* Teal pale — icon badge background */
+      background: #DCF0E8;
       display: flex; align-items: center; justify-content: center;
       font-size: 1rem; flex-shrink: 0;
-      color: #0D6E56;                             /* Teal dark — icon colour */
+      color: #0D6E56;
     }
     .vtree-root-label {
       flex: 1; font-size: 0.9rem; font-weight: 500;
-      color: #1E3A5F;                             /* Navy dark — branch label text */
+      color: #1E3A5F;
     }
     .vtree-root-count {
       font-size: 0.7rem; font-weight: 600;
-      color: #0D6E56;                             /* Teal dark — count badge text */
-      background: #C6E8DA;                        /* Teal pale — count badge background */
+      color: #0D6E56;
+      background: #C6E8DA;
       padding: 2px 7px; border-radius: 10px;
     }
     .vtree-chevron {
       font-size: 0.6rem;
-      color: #9AAEC0;                             /* Slate light — chevron icon */
+      color: #9AAEC0;
       transition: transform 0.25s;
     }
     .vtree-root-node.open .vtree-chevron { transform: rotate(90deg); }
 
-    /* ---- leaves container ---- */
     .vtree-leaves {
       display: none; flex-direction: column;
       padding-left: 40px; margin-bottom: 12px;
@@ -311,364 +269,69 @@ scrolly_css <- tags$head(
     }
     .vtree-leaves.open { display: flex; }
 
-    /* ---- individual leaf ---- */
     .vtree-leaf {
       display: flex; flex-direction: column;
       position: relative; margin-bottom: 4px;
     }
-    /* horizontal connector tick from vertical line */
     .vtree-leaf::before {
       content: ''; position: absolute;
       left: -20px; top: 22px;
       width: 20px; height: 1px;
-      background: #D0DCE8;                        /* Blue-grey — horizontal leaf connector */
+      background: #D0DCE8;
     }
-    /* junction dot */
     .vtree-leaf::after {
       content: ''; position: absolute;
       left: -23px; top: 19px;
       width: 7px; height: 7px; border-radius: 50%;
-      background: #C6E8DA;                        /* Teal pale — inactive junction dot fill */
-      border: 1.5px solid #1A8A6A;               /* Teal mid — inactive junction dot border */
+      background: #C6E8DA;
+      border: 1.5px solid #1A8A6A;
     }
     .vtree-leaf.active::after {
-      background: #0D6E56;                        /* Teal dark — active junction dot fill */
-      border-color: #0D6E56;                      /* Teal dark — active junction dot border */
+      background: #0D6E56;
+      border-color: #0D6E56;
     }
     .vtree-leaf-header {
       display: flex; align-items: center; gap: 8px;
       padding: 0.55rem 0.85rem;
-      background: #FFFFFF;                        /* White — leaf header background */
-      border: 0.5px solid #D8E4EE;               /* Blue-grey light — leaf header border */
+      background: #FFFFFF;
+      border: 0.5px solid #D8E4EE;
       border-radius: 8px; cursor: pointer;
       font-size: 0.875rem; font-weight: 500;
-      color: #2A3A4A;                             /* Dark navy — leaf header text */
+      color: #2A3A4A;
       transition: background 0.15s, border-color 0.15s;
     }
     .vtree-leaf-header:hover {
-      background: #EBF5F0;                        /* Teal wash — leaf hover background */
-      border-color: #8ABFAE;                      /* Teal light — leaf hover border */
+      background: #EBF5F0;
+      border-color: #8ABFAE;
     }
     .vtree-leaf.active .vtree-leaf-header {
-      background: #EBF5F0;                        /* Teal wash — active leaf background */
-      border-color: #0D6E56;                      /* Teal dark — active leaf border */
-      color: #0D3D2A;                             /* Very dark teal — active leaf text */
+      background: #EBF5F0;
+      border-color: #0D6E56;
+      color: #0D3D2A;
     }
     .vtree-leaf-chevron {
       font-size: 0.6rem;
-      color: #B0C4D8;                             /* Slate light — leaf chevron */
+      color: #B0C4D8;
       transition: transform 0.2s; margin-left: auto;
     }
     .vtree-leaf.active .vtree-leaf-chevron {
       transform: rotate(90deg);
-      color: #0D6E56;                             /* Teal dark — active leaf chevron */
+      color: #0D6E56;
     }
     .vtree-leaf-body {
       display: none;
       font-size: 0.82rem; line-height: 1.7;
-      color: #4A5568;                             /* Dark slate — leaf body text */
+      color: #4A5568;
       padding: 0.65rem 0.85rem;
       margin-top: 2px;
-      background: #F7FBFA;                        /* Teal faintest — leaf body background */
-      border: 0.5px solid #C6DDD5;               /* Teal pale — leaf body border */
+      background: #F7FBFA;
+      border: 0.5px solid #C6DDD5;
       border-radius: 0 0 8px 8px;
       border-top: none;
     }
     .vtree-leaf.active .vtree-leaf-body { display: block; }
-
   "))
-) # END scrollyteller styles
-
-
-#### scrollyteller JS ####
-scrolly_js <- tags$script(HTML("
-  $(document).ready(function() {
-
-    var sections = document.querySelectorAll('.s-section');
-    var navDots  = document.querySelectorAll('.snav-dot');
-
-    // entrance animations on scroll
-    var animObs = new IntersectionObserver(function(entries) {
-      entries.forEach(function(e) {
-        if (e.isIntersecting) {
-          e.target.querySelectorAll('.anim').forEach(function(el, i) {
-            setTimeout(function() { el.classList.add('visible'); }, i * 150);
-          });
-        }
-      });
-    }, { threshold: 0.15 });
-
-    sections.forEach(function(s) { animObs.observe(s); });
-
-    // update active nav dot on scroll
-    var dotObs = new IntersectionObserver(function(entries) {
-      entries.forEach(function(e) {
-        if (e.isIntersecting) {
-          var idx = Array.from(sections).indexOf(e.target);
-          navDots.forEach(function(d, i) {
-            d.classList.toggle('active', i === idx);
-          });
-        }
-      });
-    }, { threshold: 0.5 });
-
-    sections.forEach(function(s) { dotObs.observe(s); });
-
-  });
-
-  // scroll to section helper (used by nav dots)
-  function scrollToSection(idx) {
-    var sections = document.querySelectorAll('.s-section');
-    if (sections[idx]) sections[idx].scrollIntoView({ behavior: 'smooth' });
-  }
-")) # END scrollyteller JS
-
-
-#### welcome tabItem ####
-welcome_tab <- tabItem(
-  tabName = "welcome",
-  
-  # nav dots
-  div(id = "scrolly-nav",
-      div(class = "snav-dot active", onclick = "scrollToSection(0)"),
-      div(class = "snav-dot",        onclick = "scrollToSection(1)"),
-      div(class = "snav-dot",        onclick = "scrollToSection(2)"),
-      div(class = "snav-dot",        onclick = "scrollToSection(3)"),
-      div(class = "snav-dot",        onclick = "scrollToSection(4)")
-  ), # END nav dots
-  
-  div(class = "scrolly-wrap",
-      
-      #### section 1 — hero ####
-      # left: text slides in | right: map placeholder slides in
-      div(id = "ss1", class = "s-section",
-          div(class = "s-container",
-              div(class = "split s-50-50",
-                  
-                  # left — headline + intro text
-                  div(class = "anim from-left",
-                      div(class = "s-label", "Fish Creek Watershed"),
-                      tags$h1("Monitoring Alaska's Arctic Lakes"),
-                      div(class = "s-divider"),
-                      tags$p(style = "font-size:1.1rem; max-width:480px;",
-                             "A long-term ecological study tracking water quality, species diversity,
-               and habitat health across one of the most remote watersheds in the
-               National Petroleum Reserve.")
-                  ), # END left — headline + intro text
-                  
-                  # right — map placeholder with animated dots
-                  div(class = "anim from-right", style = "height:360px; position:relative;",
-                      div(class = "map-ph", style = "height:100%;",
-                          tags$span(style = "position:relative; z-index:1; font-size:0.85rem; opacity:0.8;",
-                                    "Northern Alaska — NPR-A"),
-                          div(class = "map-dot", style = "top:42%; left:38%;"),
-                          div(class = "map-dot", style = "top:55%; left:52%; animation-delay:0.5s;"),
-                          div(class = "map-dot", style = "top:35%; left:60%; animation-delay:1s;")
-                      )
-                  ) # END right — map placeholder
-                  
-              )
-          )
-      ), # END section 1 — hero
-      
-      
-      #### section 2 — stats ####
-      # left: stat block zooms in | right: background text slides from right
-      div(id = "ss2", class = "s-section",
-          div(class = "s-container",
-              div(class = "split s-30-70",
-                  
-                  # left — stat block (zooms in)
-                  div(class = "anim zoom-in",
-                      style = "text-align:right; padding-right:2rem; border-right:0.5px solid rgba(0,0,0,0.1);",
-                      div(class = "s-label", "By the numbers"),
-                      tags$h2(style = "font-size:2.2rem; line-height:1.1;",
-                              "3 lakes", tags$br(), "monitored", tags$br(), "year-round"),
-                      div(class = "stat-grid", style = "text-align:left;",
-                          div(class = "stat-card",
-                              # Teal mid — species count accent
-                              div(class = "stat-num", style = "color:#1A8A6A;", "12+"),
-                              div(class = "stat-lbl", "Species tracked")),
-                          div(class = "stat-card",
-                              # Coral — GAP count accent
-                              div(class = "stat-num", style = "color:#C85A2A;", "5"),
-                              div(class = "stat-lbl", "GAP statuses")),
-                          div(class = "stat-card",
-                              # Purple — habitat count accent
-                              div(class = "stat-num", style = "color:#4A3FA0;", "4"),
-                              div(class = "stat-lbl", "Habitat types")),
-                          div(class = "stat-card",
-                              # Navy mid — data start accent
-                              div(class = "stat-num", style = "color:#2C4A6E;", "2020"),
-                              div(class = "stat-lbl", "Data start"))
-                      )
-                  ), # END left — stat block
-                  
-                  # right — background text (slides from right)
-                  div(class = "anim from-right", style = "padding-left:1rem;",
-                      div(class = "s-badge", "Background"),
-                      tags$h2("Why monitor Fish Creek?"),
-                      tags$p("Fish Creek Watershed sits within the National Petroleum Reserve in
-                    northern Alaska — a region of extraordinary ecological sensitivity
-                    and significant resource development pressure."),
-                      tags$p("Ongoing monitoring tracks how lake ecosystems respond to climate
-                    variability and industrial activity, providing baseline data for
-                    conservation decisions."),
-                      tags$p("Data collected here feeds directly into federal management plans for
-                    one of the largest protected wetland complexes in North America.")
-                  ) # END right — background text
-                  
-              )
-          )
-      ), # END section 2 — stats
-      
-      
-      #### section 3 — species ####
-      # left: species list slides from left | right: feature card slides from right
-      div(id = "ss3", class = "s-section",
-          div(class = "s-container",
-              div(class = "split s-60-40",
-                  
-                  # left — species list
-                  div(class = "anim from-left",
-                      div(class = "s-badge", "Species diversity"),
-                      tags$h2("What lives in these waters?"),
-                      tags$p("From migratory waterfowl to Arctic fish, the watershed supports a
-                    remarkable community of species adapted to extreme seasonal change."),
-                      tags$ul(class = "sp-list",
-                              # species dot colours — each a distinct professional accent
-                              tags$li(div(class = "s-dot", style = "background:#1A8A6A;"), "Arctic grayling"),  # Teal mid
-                              tags$li(div(class = "s-dot", style = "background:#2C4A6E;"), "Lake trout"),        # Navy mid
-                              tags$li(div(class = "s-dot", style = "background:#C85A2A;"), "Broad whitefish"),   # Coral
-                              tags$li(div(class = "s-dot", style = "background:#4A3FA0;"), "Least cisco"),       # Purple
-                              tags$li(div(class = "s-dot", style = "background:#B87217;"), "Burbot"),            # Amber
-                              tags$li(div(class = "s-dot", style = "background:#185FA5;"), "Northern pike")      # Blue
-                      )
-                  ), # END left — species list
-                  
-                  # right — feature card
-                  div(class = "anim from-right",
-                      # Sand light — feature card background
-                      div(style = "background:#F5F5F2; border-radius:12px; text-align:center; padding:2.5rem 1.5rem;",
-                          div(style = "font-size:4rem; line-height:1; margin-bottom:0.75rem;", "\U0001F41F"),
-                          div(style = "font-size:1.1rem; font-weight:500; margin-bottom:0.5rem; color:#1E3A5F;",  # Navy dark
-                              "Arctic Grayling"),
-                          tags$p(style = "font-size:0.85rem; margin:0;",
-                                 "Most commonly observed across all study sites. A sentinel species for
-                 water quality change.")
-                      )
-                  ) # END right — feature card
-                  
-              )
-          )
-      ), # END section 3 — species
-      
-      
-      #### section 4 — dashboard preview ####
-      # header fades up | left: filter panel from left | right: map placeholder from right
-      div(id = "ss4", class = "s-section",
-          div(class = "s-container",
-              
-              # centered header (fades up from bottom)
-              div(class = "anim from-bottom", style = "text-align:center; margin-bottom:3rem;",
-                  div(class = "s-label", "Interactive dashboard"),
-                  tags$h2("Filter by site, species, and habitat"),
-                  tags$p(style = "max-width:520px; margin:0 auto;",
-                         "Slice the dataset by any combination of parameters — results render
-             live on an interactive Leaflet map.")
-              ), # END centered header
-              
-              div(class = "split s-40-60",
-                  
-                  # left — filter panel demo
-                  div(class = "anim from-left",
-                      div(class = "s-label", "Controls panel"),
-                      div(class = "s-card",
-                          div(div(class = "f-lbl", "Select species"),
-                              div(class = "f-sel", "Arctic grayling, Lake trout", tags$span("▾"))),
-                          div(div(class = "f-lbl", "Select study site"),
-                              div(class = "f-sel", "Teshekpuk Lake", tags$span("▾"))),
-                          div(div(class = "f-lbl", "Number of observations (per study area)"),
-                              div(class = "f-slider", div(class = "f-fill"), div(class = "f-thumb")),
-                              div(style = "display:flex; justify-content:space-between; font-size:0.7rem; color:#9AAEC0;",  # Slate light — slider range labels
-                                  tags$span("0"), tags$span("250"))),
-                          div(div(class = "f-lbl", "Habitat type"),
-                              div(class = "f-sel", "Lacustrine, Palustrine", tags$span("▾"))),
-                          div(div(class = "f-lbl", "GAP status"),
-                              div(class = "f-sel", "1 — 2", tags$span("▾"))),
-                          div(style = "display:flex; gap:8px; margin-top:0.5rem;",
-                              # Navy mid — primary button background
-                              tags$button(
-                                style = "flex:1; padding:0.55rem; font-size:0.85rem; border-radius:8px;
-                           background:#2C4A6E; color:white; border:none; cursor:pointer; font-weight:500;",
-                                "Update map"),
-                              tags$button(
-                                style = "padding:0.55rem 1rem; font-size:0.85rem; border-radius:8px;
-                           background:transparent; border:0.5px solid rgba(0,0,0,0.18);
-                           color:#4A5568; cursor:pointer;",  # Dark slate — reset button text
-                                "Reset")
-                          )
-                      )
-                  ), # END left — filter panel demo
-                  
-                  # right — map placeholder
-                  div(class = "anim from-right", style = "height:400px; position:relative;",
-                      div(class = "map-ph", style = "height:100%;",
-                          div(style = "position:relative; z-index:1; text-align:center;",
-                              div(style = "font-size:0.9rem; opacity:0.85; margin-bottom:4px;", "Leaflet map renders here"),
-                              div(style = "font-size:0.75rem; opacity:0.5;", "Sites filtered by your selections")),
-                          div(class = "map-dot", style = "top:30%; left:45%;"),
-                          div(class = "map-dot", style = "top:60%; left:35%; animation-delay:0.7s;"),
-                          div(class = "map-dot", style = "top:50%; left:65%; animation-delay:1.3s;"),
-                          div(class = "map-dot", style = "top:25%; left:70%; animation-delay:0.3s;")
-                      )
-                  ) # END right — map placeholder
-                  
-              )
-          )
-      ), # END section 4 — dashboard preview
-      
-      
-      #### section 5 — citation ####
-      # left: citation cards zoom in | right: CTA slides from right
-      div(id = "ss5", class = "s-section",
-          div(class = "s-container",
-              div(class = "split s-50-50",
-                  
-                  # left — citation + disclaimer (zoom in)
-                  div(class = "anim zoom-in", style = "display:flex; flex-direction:column; gap:14px;",
-                      div(class = "cite-card",                       # Teal mid left border
-                          div(class = "s-label", "Data citation"),
-                          includeMarkdown("text/citation.md")
-                      ), # END citation card
-                      div(class = "cite-card warn",                  # Coral left border
-                          div(class = "s-label", "Disclaimer"),
-                          includeMarkdown("text/disclaimer.md")
-                      ) # END disclaimer card
-                  ), # END left — citation + disclaimer
-                  
-                  # right — CTA (slides from right)
-                  div(class = "anim from-right",
-                      div(class = "s-label", "Get started"),
-                      tags$h2("Explore the dashboard"),
-                      tags$p("Use the filter controls to narrow results by species, study site,
-                    observation count, habitat type, or GAP status — then see matching
-                    sites rendered live on the map."),
-                      tags$p("All data sourced from field sampling conducted by the
-                    Fish Creek Watershed Observatory (FCWO)."),
-                      # Blue — CTA link colour
-                      tags$a(href = "http://www.fishcreekwatershed.org/", target = "_blank",
-                             style = "display:inline-block; margin-top:0.5rem; font-size:0.9rem; color:#185FA5;",
-                             "Visit FCWO \u2197")
-                  ) # END right — CTA
-                  
-              )
-          )
-      ) # END section 5 — citation
-      
-  ) # END scrolly-wrap
-  
-) # END welcome tabItem
+) # END choices tab styles
 
 
 #### choices tabItem ####
@@ -697,7 +360,6 @@ choices_tab <- tabItem(
               
               div(id = "sites-leaves", class = "vtree-leaves",
                   
-                  # leaf 1a — Teshekpuk Lake
                   div(class = "vtree-leaf",
                       div(class = "vtree-leaf-header",
                           onclick = "vtreeLeaf(this.parentNode)",
@@ -713,7 +375,6 @@ choices_tab <- tabItem(
                       )
                   ), # END leaf 1a
                   
-                  # leaf 1b — Judy Lake
                   div(class = "vtree-leaf",
                       div(class = "vtree-leaf-header",
                           onclick = "vtreeLeaf(this.parentNode)",
@@ -728,7 +389,6 @@ choices_tab <- tabItem(
                       )
                   ), # END leaf 1b
                   
-                  # leaf 1c — Smith Lake
                   div(class = "vtree-leaf",
                       div(class = "vtree-leaf-header",
                           onclick = "vtreeLeaf(this.parentNode)",
@@ -900,7 +560,6 @@ choices_tab <- tabItem(
       
   ), # END choices-outer
   
-  # tree interaction JS
   tags$script(HTML("
     function vtreeBranch(headerEl, leavesId) {
       var isOpen = headerEl.classList.contains('open');
@@ -927,11 +586,9 @@ choices_tab <- tabItem(
 dashboard_tab <- tabItem(
   tabName = "dashboard",
   
-  # input box
   box(width = 4,
       title = tags$strong("Adjust Avian View:"),
       
-      # species pickerInput
       pickerInput(
         inputId  = "species_ID",
         label    = "Select Species",
@@ -940,7 +597,6 @@ dashboard_tab <- tabItem(
         options  = pickerOptions(liveSearch = TRUE)
       ), # END species pickerInput
       
-      # study area pickerInput
       pickerInput(
         inputId  = "site_ID",
         label    = "Select Study Site",
@@ -949,7 +605,6 @@ dashboard_tab <- tabItem(
         options  = pickerOptions(liveSearch = TRUE)
       ), # END study area pickerInput
       
-      # observation sliderInput
       sliderInput(
         inputId = "observation_ID",
         label   = "Number of Observations (per Study area)",
@@ -959,14 +614,12 @@ dashboard_tab <- tabItem(
                     max(leaflet_points$area_observations, na.rm = TRUE))
       ), # END observation sliderInput
       
-      # Study type check box input
       checkboxGroupInput(
         inputId = "survey_ID",
         label = 'Survey Method',
         choices = unique(leaflet_points$survey_type)
-      ), # END Survey type check box input
+      ), # END survey type checkboxGroupInput
       
-      # habitat type pickerInput
       pickerInput(
         inputId  = "habitat_ID",
         label    = "Habitat Types",
@@ -974,7 +627,6 @@ dashboard_tab <- tabItem(
         multiple = TRUE
       ), # END habitat type pickerInput
       
-      # gap status pickerInput
       pickerInput(
         inputId  = "gap_ID",
         label    = "GAP Status",
@@ -982,15 +634,13 @@ dashboard_tab <- tabItem(
         choices  = sort(unique(leaflet_points$gap_sts))
       ), # END gap status pickerInput
       
-      # Navy mid (#2C4A6E) — slider skin accent colour
-      shinyWidgets::chooseSliderSkin(skin = "Flat", color = "#2C4A6E"), # END slider skin
+      shinyWidgets::chooseSliderSkin(skin = "Flat", color = "#2C4A6E"),
       
       actionButton("submit", "Update Plot"),
       actionButton("reset",  "Reset Map")
       
   ), # END input box
   
-  # leaflet box
   box(
     width = 8,
     height = 700,
@@ -1003,13 +653,13 @@ dashboard_tab <- tabItem(
 
 #### dashboardBody ####
 body <- dashboardBody(
-  scrolly_css,
+  welcome_css,
+  choices_css,
   tabItems(
     welcome_tab,
     dashboard_tab,
     choices_tab
-  ),
-  scrolly_js
+  )
 ) # END dashboardBody
 
 
