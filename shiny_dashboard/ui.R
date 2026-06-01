@@ -161,7 +161,7 @@ welcome_tab <- tabItem(
       )
     ),
     
-    # Section 4: Background with Center-aligned text
+    # Section 4: why birds/ 30x30 assessment
     div(
       class = "scrolly-section background-section align-center",
       style = "background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('dusk_stephanie_coates.jpg');
@@ -175,15 +175,70 @@ welcome_tab <- tabItem(
       div(
         class = "text-box",
         tags$h2("Success is measured in acreage:", tags$strong("26.1% of 30%"),
-        "of target acreage currently acquired"),
+                "of target acreage currently acquired"),
         tags$p("But can we expect to see biodiversity increase in protected areas?")
       )
     ),
-    
-    
-  )
-  
-) # END welcome tabItem
+    ## Birds as a proxy
+    div(
+      class = "scrolly-section background-section align-center",
+      style = "background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('dusk_stephanie_coates.jpg');
+           display: flex;
+           flex-direction: column;
+           gap: 20px;",
+      
+      div(
+        class = "text-box",
+        tags$h2(tags$strong("We used birds as a proxy"))
+      ),
+      
+      div(
+        class = "text-box",
+        style = "display: flex;
+             flex-direction: row;
+             align-items: center;
+             gap: 20px;",
+        tags$img(
+          src = "owls.png",
+          style = "width: 50%;
+               height: auto;
+               border-radius: 0px;"
+        ),
+        tags$ul(
+          style = "list-style-type: disc;
+           font-size: 3rem;",
+          tags$li("Highly observed"),
+          tags$li("Sensitive to Habitat Change"),
+          tags$li("Charismatic")
+        )
+      )
+    ),
+    ## Point blue intro 
+    div(
+      class = "scrolly-section background-section align-left",
+      style = "background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('Yvonne-Wright-SPCA.png');",
+      div(
+        class = "text-box",
+        tags$img(
+          src = "pblogo.png",       
+          style = "width: 50%;
+             height: auto;
+             border-radius: 8px;"
+        ),
+        tags$p(style = "font-size: 2rem;",
+               "Non-profit conserving birds and other wildlife"),
+        tags$img(
+          src = "akn.png",       
+          style = "width: 55%;
+             height: auto;
+             border-radius: 8px;" 
+        ),
+        tags$p(style = "font-size: 2rem;",
+               "Supporting accessible bird data collected by scientists on AKN")
+      )
+    )
+  ) 
+)# END welcome tabItem
 
 
 #### choices tabItem styles ####
