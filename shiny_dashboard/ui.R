@@ -237,7 +237,45 @@ welcome_tab <- tabItem(
                "Supporting accessible bird data collected by scientists on AKN")
       )
     )
-  ) 
+  ), 
+  # Population trends
+  div(
+    class = "scrolly-section background-section align-left",
+    style = "background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('focal_species_weme_sosp_rwbl.png');",
+    div(
+      class = "text-box",
+      style = "text-align: center;",
+      tags$p(style = "font-size: 2rem;", tags$strong("Population Trends"))
+    ), 
+    div(
+      class = "text-box",
+      tags$p("Some species tell a bigger story. We selected focal species not at random, but as representatives of their habitats — chosen for their strong habitat associations and conservation relevance based on ",
+             tags$a("Partners in Flight", href = "https://partnersinflight.org", target = "_blank"), ".")
+    )
+  ), 
+  # Second section - question 
+  div(
+    class = "scrolly-section background-section align-left",
+    style = "background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('focal_species_weme_sosp_rwbl.png');",
+    div(
+      class = "text-box",
+      tags$p(style = "font-size: 2rem;", tags$strong("They allow us to ask the question: Are 30x30 protected lands working to protect species of concern?"))
+    )
+  ), 
+  # Introduce focal species 
+  div(
+    class = "scrolly-section background-section align-left",
+    style = "background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('focal_species_weme_sosp_rwbl.png');",
+    div(
+      class = "text-box",
+      tags$img(
+        src = "focal_species.png",
+        style = "width: 100%; height: auto; border-radius: 8px;"
+      ),
+      tags$p("Taking observations for 7 focal species in only their respective habitats, we modeled their abundance from 1995 to 2024. ",
+             tags$strong("What did we find?"))
+    )
+  )
 )# END welcome tabItem
 
 
