@@ -574,7 +574,7 @@ choices_tab <- tabItem(
     div(
       class = "choices-header",
       tags$h2("Analytical Choices",
-              style = "font-size: 4rem;"),
+              style = "font-size: 4"),
       tags$p("Filter by phase or category, then click nodes to expand.",
              style = "font-size: 2rem;"),
       fluidRow(
@@ -599,16 +599,16 @@ dashboard_tab <- tabItem(
         label    = "Select Species",
         choices  = unique(species_list$common_name),
         multiple = TRUE,
-        options  = pickerOptions(liveSearch = TRUE)
-      ), # END species pickerInput
+        options  = pickerOptions(liveSearch = TRUE, actionsBox = TRUE)
+      ), # End species picker input
       
       pickerInput(
         inputId  = "site_ID",
         label    = "Select Study Site",
         choices  = unique(leaflet_points$study_area),
         multiple = TRUE,
-        options  = pickerOptions(liveSearch = TRUE)
-      ), # END study area pickerInput
+        options  = pickerOptions(liveSearch = TRUE, actionsBox = TRUE)
+      ), #end species picker input
       
       sliderInput(
         inputId = "observation_ID",
