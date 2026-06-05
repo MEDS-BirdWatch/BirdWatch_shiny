@@ -98,7 +98,7 @@ welcome_tab <- tabItem(
   div(
     class = "scrolly-container",
     
-    # Section 1: Heading
+    # Heading ----
     div(
       class = "scrolly-section static-section",
       style = "background-image: url('Laird-Henkel.jpg'); 
@@ -107,39 +107,41 @@ welcome_tab <- tabItem(
       div(
         class = "text-box",
         tags$h1("Mind the GAP: Avian responses to conservation investment in California"),
-        tags$p("Scroll down to explore our interactive story"),
+        tags$p("Scroll down to explore our interactive story (best experienced in full screen)"),
         tags$i(class = "bi bi-arrow-down", style = "font-size: 2rem;")
       )
     ),
     
-    # Section 2: Background
+    # Background ----
     div(
       class = "scrolly-section background-section align-left",
       style = "background-image: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0)), url('Slide2.png');
                background-size: 100% auto;",
       div(
         class = "text-box",
-        tags$h2("The Issue"),
-        tags$p("Across the world biodiversity is declining, this is particularly harmful for birds.")
+        style = "width: 500px;",
+        tags$h2("The Issue",
+                style = "font-size: 3rem;"),
+        tags$p("Across the world biodiversity is declining, this is particularly harmful for birds.",
+               style = "font-size: 2rem;")
       )
     ),
     
-    # Section 3: 30x30
+    # 30x30 -----
     div(
       class = "scrolly-section background-section align-right",
       style = "background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('dusk_stephanie_coates.jpg');",
       div(
         class = "text-box",
-        tags$h2("The Solution"),
+        style = "width: 700px;",
+        tags$h2("The Solution",
+                style = "text-align: center;"),
         tags$img(
-          src = "30x30.png",       # must be in www/ folder
-          style = "width: 100%;
-             height: auto;
-             border-radius: 8px;" # optional styling
+          src = "30x30.png",
+          style = "width: 80%; height: auto; border-radius: 8px; display: block; margin: 0 auto;"
         )
       )
     ),
-    # Section 3.2: 30x30
     div(
       class = "scrolly-section background-section align-left",
       style = "background-image: linear-gradient(rgba(0,0,0,0.3), 
@@ -161,7 +163,7 @@ welcome_tab <- tabItem(
       )
     ),
     
-    # Section 4: why birds/ 30x30 assessment
+    #why birds/ 30x30 assessment ----
     div(
       class = "scrolly-section background-section align-center",
       style = "background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('dusk_stephanie_coates.jpg');
@@ -170,16 +172,22 @@ welcome_tab <- tabItem(
       gap: 20px;",
       div(
         class = "text-box",
-        tags$h2(tags$strong("We're halfway to 2030")),
-        tags$p("How are we doing?")),
+        tags$h2(tags$strong("We're halfway to 2030",
+                            style = "font-size: 4rem")),
+        tags$p("How are we doing?",
+               style = "font-size: 2rem;
+                        text-align: center;")),
       div(
         class = "text-box",
         tags$h2("Success is measured in acreage:", tags$strong("26.1% of 30%"),
-                "of target acreage currently acquired"),
-        tags$p("But can we expect to see biodiversity increase in protected areas?")
+                "of target acreage currently acquired",
+                style = "font-size: 3rem;"),
+        tags$p("But can we expect to see biodiversity increase in protected areas?",
+               style = "font-size: 2rem;
+                        text-align: center;")
       )
     ),
-    ## Birds as a proxy
+    ## Birds as a proxy ----
     div(
       class = "scrolly-section background-section align-center",
       style = "background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('dusk_stephanie_coates.jpg');
@@ -213,46 +221,49 @@ welcome_tab <- tabItem(
         )
       )
     ),
-    ## Point blue intro 
+    ## Point blue intro ----
     div(
-      class = "scrolly-section background-section align-left",
+      class = "scrolly-section background-section align-center",
       style = "background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('Yvonne-Wright-SPCA.png');",
       div(
-        class = "text-box",
-        tags$img(
-          src = "pblogo.png",       
-          style = "width: 50%;
-             height: auto;
-             border-radius: 8px;"
+        style = "display: flex; flex-direction: row; gap: 20px; align-items: flex-start;",
+        div(
+          class = "text-box",
+          style = "text-align: center;",
+          tags$img(
+            src = "pblogo.png",
+            style = "width: 80%; height: auto; border-radius: 8px; display: block; margin: 0 auto 40px auto;"
+          ),
+          tags$p("Non-profit conserving birds and other wildlife", style = "font-size: 2rem;")
         ),
-        tags$p(style = "font-size: 2rem;",
-               "Non-profit conserving birds and other wildlife"),
-        tags$img(
-          src = "akn.png",       
-          style = "width: 55%;
-             height: auto;
-             border-radius: 8px;" 
-        ),
-        tags$p(style = "font-size: 2rem;",
-               "Supporting accessible bird data collected by scientists on AKN")
+        div(
+          class = "text-box",
+          style = "text-align: center;",
+          tags$img(
+            src = "akn.png",
+            style = "width: 80%; height: auto; border-radius: 8px; display: block; margin: 0 auto 40px auto;"
+          ),
+          tags$p("Supporting accessible bird data collected by scientists on AKN", style = "font-size: 2rem;")
+        )
       )
     )
   ), 
-  # Objectives
+  # Objectives ----
   div(
     class = "scrolly-section background-section align-center",
     style = "background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('Linda-Mar-beach-jenny-erbes.jpg');",
     div(
       class = "text-box",
-      tags$h2(tags$strong("Objectives")),
+      tags$h2(tags$strong("Objectives"),
+              style = "font-size: 4rem;"),
       tags$ol(
-        style = "font-size: 1.1rem; line-height: 2;",
+        style = "font-size: 2rem; line-height: 2;",
         tags$li("Develop evidence for the effects of conservation investment paths on bird biodiversity in California"),
         tags$li("Make our workflows and results reproducible for future use by conservation experts")
       )
     )
   ),
-  #Our Approach
+  #Our Approach ----
   div(
     class = "scrolly-section background-section align-center",
     style = "background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), 
@@ -262,8 +273,10 @@ welcome_tab <- tabItem(
            gap: 10px;",
     div(
       class = "text-box",
-      tags$h2(tags$strong("Our Approach")),
-      tags$p(style = "font-size: 0.95rem; color: #555;",
+      tags$h2(tags$strong("Our Approach"),
+              style = "font-size: 4rem;
+                       text-align: center"),
+      tags$p(style = "font-size: 2rem; color: #555;",
              "Bird observations (location, time, species) + Habitat type (CAL FIRE habitats) + Protection status (land classification)"),
       tags$hr()
     ),
@@ -276,20 +289,219 @@ welcome_tab <- tabItem(
     div(class = "text-box",
         tags$li(tags$strong("Assessed patterns in biodiversity within habitat type by protection status")))
   ),
-  #Deliverables
+  #Deliverables ----
   div(
     class = "scrolly-section background-section align-center",
     style = "background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('snapwire_santa_barbara.jpg');
     display: flex;
            flex-direction: column;
            gap: 20px;",
+  div(
+      class = "text-box",
+      tags$h2(tags$strong("Deliverables"),
+              style = "font-size: 4rem;
+                       text-align: center")),
   div(class = "text-box",
-      tags$li(tags$strong("Publicly documented analyses that can be reused using AKN data"))),
+      tags$p(tags$i(class = "fa-solid fa-folder-tree") ,
+             tags$strong("  Publicly documented analyses that can be reused using AKN data"),
+              style = "font-size: 3rem")),
   div(class = "text-box",
-      tags$li(tags$strong("Technical report summarizing our findings and recommendations"))),
+      tags$p(tags$i(class = "fa-solid fa-file-lines"), 
+             tags$strong("  Technical report summarizing our findings and recommendations"), 
+             style = "font-size: 3rem;")),
   div(class = "text-box",
-      tags$li(tags$strong("Interactive dashboard to display data and highlight areas of need")))
+      tags$p(tags$i(class = "fa-solid fa-map-location-dot"),
+             tags$strong("  Interactive dashboard to display data and highlight areas of need"),
+             style = "font-size: 3rem"))
 ),
+# Quantifying Biodiversity ----
+div(
+  class = "scrolly-section background-section align-left",
+  style = "background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('oystercatcher_alicia_arcidiacono.jpg');",
+  div(
+    class = "text-box",
+    tags$h2(tags$strong("Quantifying Biodiversity"),
+            style = "font-size: 3rem;
+            text-align: center;"),
+    tags$p(style = "font-size: 2rem;",
+           "We calculated a biodiversity index for each survey site, combining species richness and relative abundance across AKN survey data from 1990 to 2025.")
+  )
+),
+# California's Complexity ----
+div(
+  class = "scrolly-section background-section",
+  style = "background-image: url('guide-of-the-world.png');
+           display: flex;
+           align-items: center;
+           justify-content: center;
+           position: relative;",
+  tags$img(
+    src = "habitats_whrall.png",
+    style = "width: 100%; height: auto;"
+  ),
+  div(
+    class = "text-box",
+    style = "position: absolute; left: 20px; max-width: 25%",
+    tags$p(style = "font-size: 5rem; align: center", tags$strong("California's Complexity")),
+    tags$p(style = "font-size: 2rem;",
+           "California is one of the most ecologically diverse regions in the world. It has a mediterrenean climate and over 60 distinct habitat types, a few of which can be seen here:")
+    
+  ),
+),
+div(
+  class = "scrolly-section background-section",
+  style = "background-image: url('guide-of-the-world.png');
+           display: flex;
+           align-items: flex-start;
+           justify-content: left;
+           position: relative;",
+  tags$img(
+    src = "habitats.png",
+    style = "width: 80%; height: auto;"
+  ),
+  div(
+    class = "text-box",
+    style = "position: absolute; right: 300px; top: 200px; max-width: 30%;",
+    tags$p(style = "font-size: 5rem; text-align: center;", tags$strong("We Aggregated")),
+    tags$p(style = "font-size: 2rem;",
+           "To make a more generalizable and understandable analysis, we used a simpler view of the habitat types,",
+           tags$strong("aggregated"), "into 8 distinct habitat types")
+  ),
+  div(
+    class = "text-box",
+    style = "position: absolute; right: 200px; top: 550px; width: 300px;
+    height : 700 px",
+    tags$img(src = "habitat_types.png",
+             style = "width: 100%"))
+  ),
+  # Survey types ----
+div(
+  class = "scrolly-section background-section",
+  style = "background-image: url('swan_meadow_garret_costello.jpg');
+           display: flex;
+           align-items: center;
+           justify-content: center;",
+  div(
+    style = "display: flex; flex-direction: column; align-items: center; gap: 20px;",
+    div(
+      class = "text-box",
+      tags$h2(tags$strong("Survey Types"), style = "font-size: 3rem;")
+    ),
+    div(
+      class = "text-box",
+      tags$p("Our data consisted of two major survey types", tags$strong("Point Count"),
+             "and", tags$strong("Area Search"),
+             style = "font-size: 3rem;")
+    )
+  )
+),
+div(
+  class = "scrolly-section background-section align-left",
+  style = "background-image: url('swan_meadow_garret_costello.jpg');",
+  div(
+    style = "display: flex; flex-direction: row; align-items: center; gap: 10px;",
+    div(
+      class = "text-box",
+      tags$img(
+        src = "point_count.png",
+        style = "width: 100%; height: auto;"
+      )
+    ),
+    div(
+      class = "text-box",
+      tags$p(tags$strong("Point Counts"),  "were conducted at fixed transects across multiple study sites between 1993 and 2025. Observers remained stationary for a fixed period (5–10 minutes), recording all birds detected by sight or sound within a predefined radius. They excell for generalized surveys over a large area."),
+             style = "font-size: 2rem;")
+    )
+  ),
+div(
+  class = "scrolly-section background-section align-right",
+  style = "background-image: url('swan_meadow_garret_costello.jpg');",
+  div(
+    style = "display: flex; flex-direction: row; align-items: center; gap: 10px;",
+    div(
+      class = "text-box",
+      tags$p(tags$strong("Area Searches"),  "were conducted between 1990 and 2025. Observers moved through a defined area for a fixed duration, recording all birds observed. Area searches excell at uncovering specifics over small areas."),
+      style = "font-size: 2rem;")
+  ),
+  div(
+    class = "text-box",
+    tags$img(
+      src = "area_search.png",
+      style = "width: 100%; height: auto;"
+    )
+  )
+),
+
+  # What did you find? ----
+div(
+  class = "scrolly-section background-section",
+  style = "background-image: url('who_simon_dunne.jpg');
+           display: flex;
+           align-items: flex-start;
+           justify-content: center;
+           padding-top: 60px;",
+  div(
+    class = "text-box",
+    tags$h2(tags$strong("What Did We Find?"), style = "font-size: 4rem;")
+  )
+),
+
+# Data View ----
+div(
+  class = "scrolly-section background-section",
+  style = "background-image: url('dashboard_screenshot.png'); background-size: contain; background-repeat: no-repeat; background-position: left center; background-color: #111;",
+  div(
+    class = "text-box",
+    style = "position: absolute; right: 40px; max-width: 500px;",
+    tags$h2(tags$strong("Where are we sampling?")),
+    tags$p("The majority of AKN survey sites are concentrated in Northern California, leaving large gaps in coverage statewide.", style = "font-size: 2rem;")
+  )
+),
+div(
+  class = "scrolly-section background-section",
+  style = "background-image: url('dashboard_screenshot_gap.png'); background-size: contain; background-repeat: no-repeat; background-position: left center; background-color: #111;",
+  div(
+    class = "text-box",
+    style = "position: absolute; right: 40px; max-width: 500px;",
+    tags$h2(tags$strong("GAP Status 1 is undersampled")),
+    tags$p("Very few survey sites fall within GAP Status 1 protected lands — the areas most critical to assess for 30x30 success.", style = "font-size: 2rem;")
+  )
+),
+# Biodiversity over time ----
+div(
+  class = "scrolly-section background-section",
+  style = "background-image: url('dusk_stephanie_coates.jpg');
+           display: flex; align-items: center; justify-content: center;",
+  tags$img(
+    src = "avg_biodiv_protection_plot.jpg",
+    style = "width: 50%; height: auto; border-radius: 10px;"
+  ),
+  div(
+    class = "text-box",
+    style = "max-width: 400px;",
+    tags$h2(tags$strong("Protected Areas Support Greater Bird Biodiversity")),
+    tags$p("Average biodiversity from 1990–2025 was higher in 30x30 protected lands across most habitats.", 
+           style = "font-size: 2rem;"))
+),
+
+# Biodiversity means ----
+div(
+  class = "scrolly-section background-section",
+  style = "background-image: url('dusk_stephanie_coates.jpg');
+           display: flex; align-items: center; justify-content: center; gap: 30px;",
+  tags$img(
+    src = "presentation.png",
+    style = "width: 50%; height: auto; border-radius: 8px;"
+  ),
+  div(
+    class = "text-box",
+    style = "max-width: 300px;",
+    tags$h2(tags$strong("Biodiversity in Protected Areas"),
+            style = "font-size: 3rem;"),
+    tags$p("Protection generally increases biodiversity — but the pattern varies by habitat and survey method.", style = "font-size: 2rem;")
+  )
+),
+  
   # Population trends
   div(
     class = "scrolly-section background-section align-left",
