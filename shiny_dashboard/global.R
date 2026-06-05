@@ -13,6 +13,7 @@ library(markdown)
 library(fresh)
 library(sfarrow)
 library(shinyWidgets)
+library(collapsibleTree)
 
 # read in data 
 species_list <- read_parquet('data/species.parquet')
@@ -62,4 +63,89 @@ habitat_pal <- colorFactor(
   na.color = "transparent"
 )
 
+
+# The Decision column is the tooltip shown on hover at the leaf node
+choices_data <- data.frame(
+  Phase = c(
+    # --- Data ---
+    rep("Data", 10),
+    # --- Geospatial ---
+    rep("Geospatial", 4),
+    # --- Biodiversity ---
+    rep("Biodiversity", 5),
+    # --- Focal Species ---
+    rep("Focal Species", 7),
+    # --- Statistical Models ---
+    rep("Statistical Models", 10)
+  ),
+  Category = c(
+    # Data
+    "Survey Data", "Survey Data", "Survey Data", "Survey Data", "Survey Data",
+    "Habitat Classification", "Habitat Classification",
+    "GAP Status", "GAP Status", "GAP Status",
+    # Geospatial
+    "Spatial Join", "Spatial Join",
+    "Raster Resolution", "Raster Resolution",
+    # Biodiversity
+    "Index Selection", "Index Selection",
+    "Aggregation", "Aggregation", "Aggregation",
+    # Focal Species
+    "Selection Method", "Selection Method",
+    "Focal Species", "Focal Species", "Focal Species",
+    "Focal Species", "Focal Species",
+    # Models
+    "Biodiversity Model", "Biodiversity Model", "Biodiversity Model",
+    "Population Trend Model", "Population Trend Model",
+    "Population Trend Model", "Population Trend Model",
+    "Autocorrelation", "Autocorrelation", "Autocorrelation"
+  ),
+  Choice = c(
+    # Survey Data
+    "Include Point Count",
+    "Include Area Search",
+    "Exclude Secretive Marsh Surveys",
+    "Do Not Restrict to Breeding Season",
+    "Exclude ~2100 Area Search NAs",
+    # Habitat
+    "Use CAL FIRE Not AKN Habitat Field",
+    "Aggregate to 8 Habitat Types",
+    # GAP
+    "Aggregate GAP 1-2 as Protected",
+    "Aggregate GAP 3-5 as Unprotected",
+    "Retain Individual GAP Levels in Disaggregated Models",
+    # Geospatial
+    "Spatially Join Bird Obs to GAP + CAL FIRE",
+    "Use Transformed Coordinates",
+    "Aggregate Raster by Factor of 20",
+    "Use 100m Max Point Count Radius as Spillover Baseline",
+    # Biodiversity
+    "Use Rich-Gini-Simpson (RGS) Index",
+    "Use Richness Only as Diagnostic",
+    "Group by GAP x Habitat Type",
+    "Calculate Mean Daily Biodiversity Per Cell",
+    "Standardize by Sampling Effort",
+    # Focal Species
+    "Use IndVal Metric via {indicspecies}",
+    "Cross-Reference with Partners in Flight ACAD 2024",
+    "Wrentit — Shrub",
+    "Western Meadowlark — Herbaceous",
+    "Song Sparrow — Hardwood",
+    "Red-breasted Nuthatch — Conifer",
+    "Red-winged Blackbird — Agriculture",
+    # Biodiversity Models
+    "Gamma GLMM: Aggregated Protection",
+    "Gamma GLMM: Disaggregated Individual GAP Levels",
+    "Random Effects: Study Area + Year",
+    # Population Trends
+    "Negative Binomial Type II for Overdispersion",
+    "Include Year x Protection Interaction",
+    "Log Offset: Cumulative Sampling Effort",
+    "Do Not Split by Survey Type",
+    # Autocorrelation
+    "Durbin-Watson for Temporal Autocorrelation",
+    "Moran's I for Spatial Autocorrelation (K=4 KNN)",
+    "Address via Random Effects Not Resampling"
+  ),
+  stringsAsFactors = FALSE
+)
 

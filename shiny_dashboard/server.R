@@ -169,5 +169,46 @@
           popupOptions = popupOptions(maxWidth = 300),
           group = "Observations"
         )
-    }) %>% bindEvent(input$reset) # End reset map 
+    }) %>% bindEvent(input$reset) # End reset map
+
+
+# Update category dropdown based on selected phase
+observeEvent(input$choices_phase, {
+  if (input$choices_phase == "All") {
+    cats <- c("All", unique(choices_data$Category))
+  } else {
+    cats <- c("All", unique(choices_data$Category[choices_data$Phase == input$choices_phase]))
   }
+  updateSelectInput(session, "choices_category", choices = cats, selected = "All")
+})
+
+# Reactive filtered data
+choices_filtered <- reactive({
+  df <- choices_data
+  if (input$choices_phase    != "All") df <- df[df$Phase    == input$choices_phase,    ]
+  if (input$choices_category != "All") df <- df[df$Category == input$choices_category, ]
+  df
+})
+
+# Render collapsible tree
+output$choices_tree <- renderCollapsibleTree({
+  collapsibleTree(
+    df        = choices_filtered(),
+    hierarchy = c("Phase", "Category", "Choice"),
+    root      = "Analytical Choices",
+    fill      = c(
+      # root
+      "#1E3A5F",
+      # Phase level — one colour per unique phase
+      rep("#2C4A6E", length(unique(choices_data$Phase))),
+      # Category level
+      rep("#0D6E56", length(unique(choices_data$Category))),
+      # Choice (leaf) level
+      rep("#97BC62", nrow(choices_data))
+    ),
+    collapsed  = TRUE,
+    zoomable   = FALSE,
+    fontSize   = 13
+  )
+})
+}
