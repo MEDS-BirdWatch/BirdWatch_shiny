@@ -238,6 +238,58 @@ welcome_tab <- tabItem(
       )
     )
   ), 
+  # Objectives
+  div(
+    class = "scrolly-section background-section align-center",
+    style = "background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('Linda-Mar-beach-jenny-erbes.jpg');",
+    div(
+      class = "text-box",
+      tags$h2(tags$strong("Objectives")),
+      tags$ol(
+        style = "font-size: 1.1rem; line-height: 2;",
+        tags$li("Develop evidence for the effects of conservation investment paths on bird biodiversity in California"),
+        tags$li("Make our workflows and results reproducible for future use by conservation experts")
+      )
+    )
+  ),
+  #Our Approach
+  div(
+    class = "scrolly-section background-section align-center",
+    style = "background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), 
+           url('Linda-Mar-beach-jenny-erbes.jpg'); 
+           display: flex;
+           flex-direction: column;
+           gap: 10px;",
+    div(
+      class = "text-box",
+      tags$h2(tags$strong("Our Approach")),
+      tags$p(style = "font-size: 0.95rem; color: #555;",
+             "Bird observations (location, time, species) + Habitat type (CAL FIRE habitats) + Protection status (land classification)"),
+      tags$hr()
+    ),
+    div(class = "text-box",
+        tags$li(tags$strong("Calculated bird biodiversity index"))),
+    div(class = "text-box",
+        tags$li(tags$strong("Created generalized linear mixed models (GLMMs)"))),
+    div(class = "text-box",
+        tags$li(tags$strong("Evaluated population trends of select bird species within their associated habitats"))),
+    div(class = "text-box",
+        tags$li(tags$strong("Assessed patterns in biodiversity within habitat type by protection status")))
+  ),
+  #Deliverables
+  div(
+    class = "scrolly-section background-section align-center",
+    style = "background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('snapwire_santa_barbara.jpg');
+    display: flex;
+           flex-direction: column;
+           gap: 20px;",
+  div(class = "text-box",
+      tags$li(tags$strong("Publicly documented analyses that can be reused using AKN data"))),
+  div(class = "text-box",
+      tags$li(tags$strong("Technical report summarizing our findings and recommendations"))),
+  div(class = "text-box",
+      tags$li(tags$strong("Interactive dashboard to display data and highlight areas of need")))
+),
   # Population trends
   div(
     class = "scrolly-section background-section align-left",
