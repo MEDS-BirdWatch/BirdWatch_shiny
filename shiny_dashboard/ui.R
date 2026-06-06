@@ -197,7 +197,7 @@ welcome_tab <- tabItem(
       
       div(
         class = "text-box",
-        tags$h2(tags$strong("We used birds as a proxy"))
+        tags$h2(tags$strong("We used birds as a proxy for biodiversity"))
       ),
       
       div(
@@ -502,45 +502,178 @@ div(
   )
 ),
   
-  # Population trends
+# Population trends
+div(
+  class = "scrolly-section background-section align-left",
+  style = "background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('focal_species_weme_sosp_rwbl.png');",
   div(
-    class = "scrolly-section background-section align-left",
-    style = "background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('focal_species_weme_sosp_rwbl.png');",
-    div(
-      class = "text-box",
-      style = "text-align: center;",
-      tags$p(style = "font-size: 2rem;", tags$strong("Population Trends"))
-    ), 
-    div(
-      class = "text-box",
-      tags$p("Some species tell a bigger story. We selected focal species not at random, but as representatives of their habitats — chosen for their strong habitat associations and conservation relevance based on ",
-             tags$a("Partners in Flight", href = "https://partnersinflight.org", target = "_blank"), ".")
-    )
+    class = "text-box",
+    style = "text-align: center;",
+    tags$p(style = "font-size: 5rem; color: black;", tags$strong("Population Trends"))
   ), 
-  # Second section - question 
   div(
-    class = "scrolly-section background-section align-left",
-    style = "background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('focal_species_weme_sosp_rwbl.png');",
-    div(
-      class = "text-box",
-      tags$p(style = "font-size: 2rem;", tags$strong("They allow us to ask the question: Are 30x30 protected lands working to protect species of concern?"))
-    )
-  ), 
-  # Introduce focal species 
-  div(
-    class = "scrolly-section background-section align-left",
-    style = "background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('focal_species_weme_sosp_rwbl.png');",
-    div(
-      class = "text-box",
-      tags$img(
-        src = "focal_species.png",
-        style = "width: 100%; height: auto; border-radius: 8px;"
-      ),
-      tags$p("Taking observations for 7 focal species in only their respective habitats, we modeled their abundance from 1995 to 2024. ",
-             tags$strong("What did we find?"))
-    )
+    class = "text-box",
+    tags$p(style = "font-size: 2rem; color: black;", "Some species tell a bigger story. We selected focal species not at random, but as representatives of their habitats — chosen for their strong habitat associations and conservation relevance based on ",
+           tags$a("Partners in Flight", href = "https://partnersinflight.org", target = "_blank"), ".")
   )
-)# END welcome tabItem
+), 
+# Second section - question 
+div(
+  class = "scrolly-section background-section align-left",
+  style = "background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('focal_species_weme_sosp_rwbl.png');
+  display: flex; justify-content: center; align-items: center;",
+  div(
+    class = "text-box",
+    tags$p(style = "font-size: 4rem; color: black;", tags$strong("They allow us to ask the question: Are 30x30 protected lands working to protect species of concern?"))
+  )
+), 
+# Introduce focal species 
+div(
+  class = "scrolly-section background-section align-left",
+  style = "background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('focal_species_weme_sosp_rwbl.png');
+  display: flex; justify-content: center; align-items: center;",
+  div(
+    class = "text-box",
+    tags$img(
+      src = "focal_species.png",
+      style = "width: 100%; height: auto; border-radius: 8px;"
+    ),
+    tags$p(style = "font-size: 2rem; color: black;", "Taking observations for 7 focal species in only their respective habitats, we modeled their abundance from 1995 to 2024. ",
+           tags$strong("What did we find?"))
+  )
+),
+# Results 
+div(
+  class = "scrolly-section background-section align-left",
+  style = "background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('conifer_Bryant_Baker_ForestWatch.png');
+  display: flex; justify-content: center; align-items: center;",
+  div(
+    class = "text-box", 
+    tags$p(style = "font-size: 2rem; color: black;", "Across our seven focal species, five maintained stable populations in protected sites— suggesting that protected lands are successfully buffering these species from population declines. Protected sites also supported higher baseline abundance for the majority of species, reflecting the historical carrying capacities of these lands.")
+  )
+),
+# Red-breasted nuthatch
+div(
+  class = "scrolly-section background-section align-left",
+  style = "background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('conifer_Bryant_Baker_ForestWatch.png');",
+  div(
+    class = "text-box",
+    tags$p(style = "font-size: 2rem; color: black;", "Red-breasted Nuthatch, our conifer species, maintained stable populations in protected sites while unprotected sites showed a promising increase.")
+  ),
+  div(
+    style = "width: 260px; height: 260px; background-image: url('rbnu_cornell_.jpg');
+      background-size: cover; background-position: center; border-radius: 4px; flex-shrink: 0;"
+  )
+), 
+# Red-winged blackbird 
+div(
+  class = "scrolly-section background-section align-left",
+  style = "background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('Land_Conservation_Santa_Rita_Ranch_.png');",
+  div(
+    class = "text-box",
+    tags$p(style = "font-size: 2rem; color: black;", "Red-winged Blackbird, our working lands species, maintained stable populations in protected sites while unprotected agricultural lands showed a declining trend — a warning sign for California's farming landscapes.")
+  ),
+  div(
+    style = "width: 260px; height: 260px; background-image: url('rwbl_audubon.png');
+      background-size: cover; background-position: center; border-radius: 4px; flex-shrink: 0;"
+  )
+),
+# Western Meadowlark 
+div(
+  class = "scrolly-section background-section align-left",
+  style = "background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('grasslands_@scitechdaily.png');",
+  div(
+    class = "text-box",
+    tags$p(style = "font-size: 2rem; color: black;", "Western Meadowlark, our grassland species, showed a slight declining trend in protected sites and an increase in unprotected sites — particularly those under active stewardship in GAP status 3 — suggesting that managed lands may be supporting grassland recovery.")
+  ),
+  div(
+    style = "width: 260px; height: 260px; background-image: url('weme_adobe.png');
+      background-size: cover; background-position: center; border-radius: 4px; flex-shrink: 0;"
+  )
+),
+# Wrentit 
+div(
+  class = "scrolly-section background-section align-left",
+  style = "background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('shrub_nps_@jessica_wienberg_McClosky.jpg');",
+  div(
+    class = "text-box",
+    tags$p(style = "font-size: 2rem; color: black;", "Wrentit, our shrub species, showed stable populations in protected sites and a significant increase in unprotected lands, particularly in the least protected areas, potentially due to expanding shrub habitat in these lands.")
+  ),
+  div(
+    style = "width: 260px; height: 260px; background-image: url('wrentit-manish-sharma.jpg');
+      background-size: cover; background-position: center; border-radius: 4px; flex-shrink: 0;"
+  )
+), 
+# Summarize results - part 1 
+div(
+  class = "scrolly-section background-section align-left",
+  style = "background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('sierra_michael_mahoney.jpg');",
+  div(
+    class = "text-box",
+    tags$p(style = "font-size: 5rem; color: black;", tags$strong("Let's summarize")), 
+    tags$p(style = "font-size: 2rem; color: black;", "The results of our biodiversity analysis and focal species trends suggest that protection is indeed working to promote biodiversity in 30x30 protected areas, though the effectiveness varies by habitat.")
+  )
+), # Summarize results - part 2 
+div(
+  class = "scrolly-section background-section align-left",
+  style = "background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('sierra_michael_mahoney.jpg');",
+div(
+  class = "text-box",
+  tags$p(style = "font-size: 2rem; color: black;", "While stable populations were observed for some species within these protected lands, others exhibited diverging trends, indicating that protection alone is not always sufficient. Further analysis revealed that active stewardship practices in unprotected areas also play a significant role in promoting biodiversity, as demonstrated by the positive trends observed in Western Meadowlark populations. This nuanced story highlights the importance of both protected areas and proactive conservation efforts in preserving biodiversity.")
+),
+),
+# Next steps 
+div(
+  class = "scrolly-section background-section align-left",
+  style = "background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('Dick-Evans.jpg');",
+  div(
+    class = "text-box",
+    tags$p(style = "font-size: 5rem; color: black;", tags$strong("Next steps")), 
+    tags$p(style = "font-size: 2rem; color: black;", "This analysis was designed to give a high-level view, and broad patterns emerged that now point us toward the next questions. In addition to integrating more data into our models, we recommend a finer-scale analysis that drills deeper into specific habitats to identify the mechanisms driving the patterns we observed.")
+  )
+),
+# Conclusion
+div(
+  class = "scrolly-section background-section align-left",
+  style = "background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('plover_parent_jenny_erbes.jpg');",
+  div(
+    class = "text-box",
+    tags$p(style = "font-size: 5rem; color: black;", tags$strong("Conclusion")), 
+    tags$p(style = "font-size: 2rem; color: black;", "California is nearly four years from its 2030 deadline. Our results suggest that protection policies are working to conserve biodiversity — but targeted acquisition of unprotected lands showing recovery potential, paired with better monitoring to fill the data gaps we identified, will determine whether California can build a truly biodiverse future by 2030 and beyond.")
+  )
+), 
+# BirdWatch Thank you 
+div(
+  class = "scrolly-section background-section align-left",
+  style = "background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('plover_parent_jenny_erbes.jpg');",
+  div(
+    class = "text-box",
+    tags$img(
+      src = "Bird_Watch.jpg",
+      style = "width: 100%; height: auto; border-radius: 8px;"
+    ),
+    tags$p(style = "font-size: 3rem; color: black;", tags$strong("Thank you for reading!")), 
+    tags$p(style = "font-size: 2rem; color: black;", "This Storymap and Dashboard were created by Peter Vitalie, Nathalie Bonnet, and Isabella Segarra as part of the Masters in Environmental Data Science Capstone Project.")
+  )
+), 
+# Photo credits 
+div(
+  class = "scrolly-section",
+  style = "background: #f5f5f5; padding: 2rem 3rem;",
+  tags$p(style = "font-size: 1rem; color: #666; font-weight: 600; margin-bottom: 1rem;", "Image Credits"),
+  tags$ul(
+    style = "font-size: 0.85rem; color: #888; line-height: 2; list-style: none; padding: 0;",
+    tags$li("Red-breasted Nuthatch — © John Doe / Cornell Lab of Ornithology"),
+    tags$li("Western Meadowlark — © Jane Smith / Adobe Stock"),
+    tags$li("Wrentit — © Manish Sharma"),
+    tags$li("Shrub habitat — © Jessica Wienberg-McClosky / National Park Service"),
+    tags$li("Conifer forest — © Bryant Baker / ForestWatch"),
+    tags$li("Sierra Nevada — © Michael Mahoney / Point Blue Conservation Science"),
+    tags$li("Grasslands — © SciTechDaily"),
+    tags$li("Working lands — The Conservation Fund")
+  )
+)
+) # END welcome tabItem
 
 
 #### choices tabItem styles ####
